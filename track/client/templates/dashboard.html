@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block msg %}
+<div class="col-sm-11">
+  {% if messages %}
+  {% for msg in messages %}
+  <span class="text-center my-5 text-black "><p class="text-uppercase">{{msg}}</p></span> 
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock msg %}
+{% block content %}
+<div class="col-sm-11">
+    <h3 class="text-center my-3 text-black ">Dasboard</h3>
+    <a href="{% url "add"%}" class="btn btn-outline-primary mb-2" style="width:50%">Add New Blog</a>
+    <h1 class="text-center text-black alert alert-success" >Show Blog</h1>
+    {% if post %}
+    <table class="table table-hover table-bordered table-dark mt-5">
+      <thead>
+        <tr>
+          <th scope="col" style="width:2%">id</th>
+          <th scope="col" style="width:23%">Title</th>
+          <th scope="col" style="width:65%">Description</th>
+          <th scope="col" style="width:10%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for fm in post %}
+        <tr>
+          <th scope="row">{{fm.id}}</th>
+          <td>{{fm.titel}}</td>
+          <td>{{fm.desc}}</td>
+          <td>
+            <a href="{% url "update" fm.id%}" class="btn btn-outline-warning btn-sm ">Update</a>
+            {% if perms.track.delete_fm %}
+            <form action="{% url "delete" fm.id%}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm mt-3">
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-center my-5 text-black alert alert-danger ">No more Record</h3>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block side %}
+<div class="row-sm-1"><span class="btn btn-danger btn-ms">Login count:-{{count}}</span>
+  <h2 class=" text-black">Name:-{{name}}</h2>
+  {% for groups in group %}
+  <h3 class=" text-black">Group:-{{groups}}</h3>
+  {% endfor %}
+<h3 class="text-black">Machine ip:-{{ip}}</h3>
+</div>
+
+{% endblock side %}

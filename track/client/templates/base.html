@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-tracking</title>
+    <link rel="stylesheet" href="{% static "css/all.min.css"%}">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css"%}">
+
+</head>
+<body>
+    <div class="container-fluid ">
+        {% include "nvbar.html" %}
+        <div class="container ">
+            {% block msg %}
+            {% endblock msg %}
+          </div>
+          <div class="container md-5">
+            {% block content %}
+            {% endblock content %}
+            {% block side %}
+            {% endblock side %}
+          </div>
+    </div>
+    <script src="{% static "all.min.js"%}"></script>
+    <script src="{% static "bootstrap.min.js"%}"></script>
+    <script src="{% static "jquery.js"%}"></script>
+    <script src="{% static "popper.js"%}"></script>
+</body>
+</html>

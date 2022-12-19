@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block msg %}
+<div class="col-sm-11">
+  {% if messages %}
+  {% for msg in messages %}
+  </h3 class="text-center my-5 text-black ">{{msg}}</h3>
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock msg %}
+{% block content %}
+<div class="col-sm-11">
+    <h3 class="text-center my-5 text-black ">Signup</h3>
+</div>
+<div class="container my-5">
+  <div class="form-group">
+    <form action="" method="post">
+      {% csrf_token %}
+      {% for form in fm  %}
+    {{form.label_tag}}{{form}}{{fm.errors|striptags}}
+    {% endfor %}
+    <input type="submit" value="submit" class="btn btn-success mt-4" style="width:50%">
+    </form>
+    <a href="{% url "login"%}" class="btn btn-primary mt-5">Already registerd</a>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-sm-11">
+    <h3 class="text-center my-5 text-black ">Update Your Blog</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for fm in form %}
+        {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}
+        {% endfor %}
+<input type="submit" value="Update" class="btn btn-outline-success mt-5" style="width:50%">
+    </form>
+</div>
+{% endblock content %}
